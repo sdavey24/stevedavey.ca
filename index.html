@@ -1,125 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#031426">
-  <title>Steve Davey</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#031426">
+<title>Steve Davey</title>
+<style>
+:root{
+  --blue:#0a95ff;
+  --text:#f4f6f8;
+  --muted:#d2d9e1;
+}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:#031426;font-family:Arial,Helvetica,sans-serif}
+body{overflow:hidden}
+.hero{
+  position:relative;
+  width:100vw;
+  height:100vh;
+  height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--text);
+  background-image:
+    linear-gradient(rgba(0,8,18,.16),rgba(0,8,18,.25)),
+    url("steve-davey-scene.jpg");
+  background-size:cover;
+  background-position:center center;
+  overflow:hidden;
+}
+.frame{
+  position:absolute;
+  inset:clamp(10px,2vw,28px);
+  border:1.5px solid rgba(14,161,255,.9);
+  border-radius:clamp(16px,2vw,30px);
+  pointer-events:none;
+  box-shadow:0 0 18px rgba(0,153,255,.12);
+}
+.content{
+  position:relative;
+  z-index:2;
+  width:min(1120px,88vw);
+  text-align:center;
+  padding:clamp(16px,2vw,28px);
+  text-shadow:0 3px 12px rgba(0,0,0,.75);
+}
+.logo{
+  font-size:clamp(66px,10vw,150px);
+  line-height:.78;
+  font-weight:800;
+  font-style:italic;
+  letter-spacing:-.08em;
+  color:#e8ebee;
+  text-shadow:0 4px 0 #89919b,0 10px 18px rgba(0,0,0,.6);
+}
+.logo .flight{color:var(--blue);font-size:.36em;margin-left:-.08em;vertical-align:.35em}
+h1{
+  margin:.28em 0 .18em;
+  font-size:clamp(42px,7vw,92px);
+  line-height:1;
+  font-weight:800;
+  font-style:italic;
+  letter-spacing:.04em;
+  color:#eef1f4;
+  text-shadow:0 4px 0 #8f969f,0 9px 16px rgba(0,0,0,.65);
+}
+.rule{
+  height:2px;
+  width:92%;
+  margin:0 auto .45em;
+  background:linear-gradient(90deg,transparent,var(--blue),transparent);
+  box-shadow:0 0 10px var(--blue);
+}
+.categories{
+  font-size:clamp(20px,3vw,38px);
+  color:#e7ebef;
+}
+.dot{color:var(--blue);padding:0 .28em}
+.tagline{
+  margin:clamp(12px,2vh,26px) auto 0;
+  max-width:900px;
+  font-size:clamp(14px,1.8vw,24px);
+  line-height:1.5;
+  font-style:italic;
+  color:#f2f4f7;
+}
+.location-row{
+  margin:clamp(14px,2vh,28px) auto 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  width:min(620px,82%);
+}
+.location-row::before,.location-row::after{
+  content:"";
+  flex:1;
+  height:2px;
+  background:linear-gradient(90deg,transparent,var(--blue));
+}
+.location-row::after{background:linear-gradient(90deg,var(--blue),transparent)}
+.maple{color:#e31b23;font-size:clamp(20px,2.5vw,30px)}
+.location{
+  margin-top:6px;
+  font-size:clamp(16px,2vw,28px);
+}
+.linkedin{
+  margin-top:clamp(12px,1.7vh,20px);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:clamp(36px,4vw,54px);
+  aspect-ratio:1;
+  border-radius:8px;
+  background:#0A66C2;
+  box-shadow:0 5px 16px rgba(0,0,0,.35);
+  transition:.18s ease;
+}
+.linkedin:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.linkedin svg{width:62%;height:62%;fill:white}
+footer{
+  position:absolute;
+  z-index:2;
+  bottom:clamp(12px,2vh,24px);
+  left:0;right:0;
+  text-align:center;
+  color:#f2f4f6;
+  font-size:clamp(12px,1.3vw,16px);
+  font-style:italic;
+  text-shadow:0 2px 8px rgba(0,0,0,.8);
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+/* Portrait phones: keep the branding compact and leave the airplane visible. */
+@media (orientation:portrait){
+  .hero{background-position:66% center}
+  .content{
+    width:94vw;
+    padding:12px 14px;
+    transform:translateY(-8vh);
+  }
+  .logo{font-size:clamp(58px,20vw,100px)}
+  h1{font-size:clamp(34px,11vw,58px)}
+  .categories{font-size:clamp(16px,5vw,24px)}
+  .tagline{font-size:clamp(12px,3.5vw,17px);max-width:92%}
+  .location-row{margin-top:14px}
+  .location{font-size:clamp(14px,4vw,19px)}
+  .linkedin{width:38px;margin-top:12px}
+  footer{bottom:max(12px,env(safe-area-inset-bottom))}
+}
 
-    html, body {
-      margin: 0;
-      width: 100%;
-      min-height: 100%;
-      background: #031426;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-
-    body {
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    /* The artwork itself is 3:2.
-       Everything — including the LinkedIn button — is positioned
-       relative to this artboard, NOT relative to the browser window. */
-    .artboard {
-      position: relative;
-      width: min(100vw, calc(100vh * 1.5));
-      width: min(100vw, calc(100svh * 1.5));
-      aspect-ratio: 3 / 2;
-      flex: 0 0 auto;
-
-      background:
-        #031426 url("steve-davey-bg.png")
-        center center / 100% 100% no-repeat;
-    }
-
-    .linkedin {
-      position: absolute;
-      left: 50%;
-      top: 75.1%;
-      transform: translate(-50%, -50%);
-
-      width: 3.2%;
-      min-width: 34px;
-      max-width: 50px;
-      aspect-ratio: 1 / 1;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 12%;
-      background: #0A66C2;
-      box-shadow: 0 4px 14px rgba(0,0,0,.38);
-      text-decoration: none;
-      z-index: 10;
-
-      transition: transform .18s ease, filter .18s ease;
-    }
-
-    .linkedin:hover {
-      transform: translate(-50%, -54%);
-      filter: brightness(1.08);
-    }
-
-    .linkedin:focus-visible {
-      outline: 3px solid #fff;
-      outline-offset: 4px;
-    }
-
-    .linkedin svg {
-      width: 63%;
-      height: 63%;
-      fill: #fff;
-    }
-
-    /* Phone / portrait screens:
-       keep the complete artwork together near the top instead of
-       stretching the button into the empty area below it. */
-    @media (max-aspect-ratio: 1 / 1) {
-      body {
-        align-items: flex-start;
-        overflow-y: auto;
-      }
-
-      .artboard {
-        width: 100vw;
-        margin-top: max(0px, env(safe-area-inset-top));
-      }
-
-      .linkedin {
-        width: 28px;
-        min-width: 28px;
-        max-width: 28px;
-        top: 77.3%;
-      }
-    }
-  </style>
+/* Landscape phones: use the extra width and compress vertical spacing. */
+@media (orientation:landscape) and (max-height:600px){
+  .hero{background-position:center 58%}
+  .content{width:84vw;padding:6px 18px}
+  .logo{font-size:clamp(52px,12vh,82px)}
+  h1{font-size:clamp(34px,9vh,62px);margin:.15em 0 .12em}
+  .categories{font-size:clamp(16px,4.5vh,27px)}
+  .tagline{font-size:clamp(12px,3.3vh,18px);margin-top:8px;line-height:1.35}
+  .location-row{margin-top:8px}
+  .location{font-size:clamp(13px,3.4vh,18px)}
+  .linkedin{width:34px;margin-top:7px}
+  footer{font-size:11px;bottom:7px}
+}
+</style>
 </head>
-
 <body>
-  <main class="artboard" aria-label="Steve Davey — Aviation, Technology, Projects">
-    <a
-      class="linkedin"
-      href="https://www.linkedin.com/in/steve-davey-5822772b"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Steve Davey on LinkedIn"
-      title="LinkedIn">
+<main class="hero">
+  <div class="frame"></div>
+
+  <section class="content">
+    <div class="logo">SD <span class="flight">✈</span></div>
+
+    <h1>STEVE DAVEY</h1>
+    <div class="rule"></div>
+
+    <div class="categories">
+      Aviation <span class="dot">•</span>
+      Technology <span class="dot">•</span>
+      Projects
+    </div>
+
+    <div class="tagline">
+      Building practical solutions, solving interesting problems,<br>
+      and occasionally making things more complicated than necessary.
+    </div>
+
+    <div class="location-row"><span class="maple">◆</span></div>
+    <div class="location">Thunder Bay, Ontario, Canada</div>
+
+    <a class="linkedin"
+       href="https://www.linkedin.com/in/steve-davey-5822772b"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Steve Davey on LinkedIn"
+       title="LinkedIn">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.1 20.45H3.54V9H7.1v11.45z"/>
       </svg>
     </a>
-  </main>
+  </section>
+
+  <footer>© 2026 Steve Davey</footer>
+</main>
 </body>
 </html>
