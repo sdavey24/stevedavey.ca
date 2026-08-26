@@ -1,296 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#07111f" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#031426">
   <title>Steve Davey</title>
   <style>
-    :root {
-      --bg: #06101d;
-      --panel: rgba(8, 20, 34, 0.72);
-      --panel-border: rgba(118, 179, 255, 0.28);
-      --text: #f5f7fb;
-      --muted: #aeb8c7;
-      --accent: #4da3ff;
-      --accent-soft: rgba(77, 163, 255, 0.22);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     html, body {
       margin: 0;
-      min-height: 100%;
+      width: 100%;
+      height: 100%;
+      background: #031426;
+      overflow: hidden;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--bg);
-      color: var(--text);
     }
 
-    body {
-      min-height: 100vh;
-      overflow: hidden;
+    .hero {
       position: relative;
-      display: grid;
-      place-items: center;
-      padding: 28px;
+      width: 100vw;
+      height: 100vh;
       background:
-        radial-gradient(circle at 50% 15%, rgba(25, 67, 110, 0.28), transparent 38%),
-        linear-gradient(180deg, #020711 0%, #07111f 60%, #03070c 100%);
+        #031426 url("steve-davey-hero.png")
+        center center / contain no-repeat;
     }
 
-    .stars,
-    .aurora,
-    .horizon {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .stars {
-      opacity: 0.6;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,.95) 0 1px, transparent 1.3px),
-        radial-gradient(circle, rgba(255,255,255,.7) 0 1px, transparent 1.2px),
-        radial-gradient(circle, rgba(255,255,255,.5) 0 1px, transparent 1.1px);
-      background-size: 130px 130px, 190px 190px, 260px 260px;
-      background-position: 18px 25px, 70px 90px, 120px 30px;
-    }
-
-    .aurora {
-      overflow: hidden;
-      filter: blur(18px);
-      opacity: 0.7;
-    }
-
-    .aurora::before,
-    .aurora::after {
-      content: "";
+    /* Clickable LinkedIn hotspot over the visible LinkedIn icon */
+    .linkedin-link {
       position: absolute;
-      width: 70vw;
-      height: 34vh;
-      border-radius: 50%;
-      transform: rotate(-8deg);
-    }
-
-    .aurora::before {
-      left: -8vw;
-      top: 42vh;
-      background:
-        radial-gradient(ellipse at center, rgba(53, 255, 183, .48) 0%, rgba(21, 193, 141, .22) 34%, transparent 70%);
-    }
-
-    .aurora::after {
-      right: -10vw;
-      top: 32vh;
-      background:
-        radial-gradient(ellipse at center, rgba(54, 176, 255, .38) 0%, rgba(0, 109, 176, .16) 38%, transparent 72%);
-    }
-
-    .horizon {
-      top: auto;
-      height: 33vh;
-      background:
-        linear-gradient(150deg, transparent 0 22%, #04080d 22.5% 38%, transparent 38.5%),
-        linear-gradient(30deg, transparent 0 32%, #05090e 32.5% 48%, transparent 48.5%),
-        linear-gradient(180deg, transparent 0 56%, rgba(1,4,7,.92) 56% 100%);
-      opacity: 0.95;
-    }
-
-    .card {
-      position: relative;
-      z-index: 2;
-      width: min(820px, 92vw);
-      padding: 54px 56px 42px;
-      text-align: center;
-      border: 1px solid var(--panel-border);
-      border-radius: 20px;
-      background:
-        linear-gradient(180deg, rgba(10, 24, 40, .82), rgba(5, 14, 24, .70));
-      box-shadow:
-        0 24px 80px rgba(0, 0, 0, .45),
-        0 0 70px var(--accent-soft);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .monogram {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 88px;
-      height: 64px;
-      margin-bottom: 22px;
-      font-size: 48px;
-      font-weight: 300;
-      letter-spacing: -8px;
-      line-height: 1;
-    }
-
-    .monogram .s {
-      color: #f1f4f8;
-    }
-
-    .monogram .d {
-      color: var(--accent);
-      margin-left: 2px;
-    }
-
-    .rule {
-      width: 46px;
-      height: 2px;
-      margin: 0 auto 28px;
-      background: var(--accent);
-      opacity: .9;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(44px, 8vw, 76px);
-      font-weight: 600;
-      letter-spacing: .16em;
-      text-indent: .16em;
-      line-height: 1.08;
-    }
-
-    .tagline {
-      margin: 24px 0 0;
-      font-size: clamp(18px, 2.8vw, 26px);
-      color: var(--muted);
-      letter-spacing: .03em;
-    }
-
-    .tagline .dot {
-      color: var(--accent);
-      padding: 0 9px;
-    }
-
-    .statement {
-      max-width: 620px;
-      margin: 28px auto 0;
-      font-size: clamp(16px, 2vw, 19px);
-      line-height: 1.7;
-      color: #c7d0dc;
-    }
-
-    .linkedin {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      margin-top: 30px;
-      border-radius: 5px;
-      background: #0A66C2;
+      left: 50%;
+      top: 71.5%;
+      width: clamp(44px, 4.5vw, 72px);
+      height: clamp(44px, 4.5vw, 72px);
+      transform: translate(-50%, -50%);
+      border-radius: 10px;
       text-decoration: none;
-      transition: transform .18s ease, opacity .18s ease;
+      cursor: pointer;
     }
 
-    .linkedin:hover {
-      transform: translateY(-2px);
-      opacity: .9;
+    .linkedin-link:focus-visible {
+      outline: 3px solid white;
+      outline-offset: 4px;
     }
 
-    .linkedin svg {
-      width: 27px;
-      height: 27px;
-      fill: #ffffff;
-    }
-
-    .location {
-      margin-top: 24px;
-      color: #b8c2cf;
-      font-size: 15px;
-      letter-spacing: .04em;
-    }
-
-    .location::before {
-      content: "⌖";
-      color: var(--accent);
-      margin-right: 8px;
-      font-size: 18px;
-    }
-
-    footer {
-      position: fixed;
-      z-index: 2;
-      left: 0;
-      right: 0;
-      bottom: 18px;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(218, 225, 235, .58);
-      letter-spacing: .03em;
-    }
-
-    @media (max-width: 600px) {
-      body {
-        padding: 18px;
-        overflow: auto;
-      }
-
-      .card {
-        padding: 42px 22px 34px;
-        border-radius: 16px;
-      }
-
-      h1 {
-        letter-spacing: .09em;
-        text-indent: .09em;
-      }
-
-      .tagline .dot {
-        padding: 0 5px;
-      }
-
-      footer {
-        position: static;
-        margin-top: 22px;
+    @media (max-aspect-ratio: 3/2) {
+      .hero {
+        background-size: cover;
       }
     }
   </style>
 </head>
-
 <body>
-  <div class="stars"></div>
-  <div class="aurora"></div>
-  <div class="horizon"></div>
-
-  <main class="card">
-    <div class="monogram" aria-label="SD">
-      <span class="s">S</span><span class="d">D</span>
-    </div>
-
-    <div class="rule"></div>
-
-    <h1>STEVE DAVEY</h1>
-
-    <div class="tagline">
-      Aviation <span class="dot">•</span> Technology <span class="dot">•</span> Projects
-    </div>
-
-    <p class="statement">
-      Building practical solutions, solving interesting problems,
-      and occasionally making things more complicated than necessary.
-    </p>
-
-    <a class="linkedin"
-       href="https://www.linkedin.com/in/steve-davey-5822772b"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Steve Davey on LinkedIn"
-       title="LinkedIn">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.1 20.45H3.54V9H7.1v11.45z"/>
-      </svg>
+  <main class="hero" aria-label="Steve Davey — Aviation, Technology, Projects">
+    <a
+      class="linkedin-link"
+      href="https://www.linkedin.com/in/steve-davey-5822772b"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open Steve Davey's LinkedIn profile"
+      title="LinkedIn">
     </a>
-
-    <div class="location">Thunder Bay, Ontario, Canada</div>
   </main>
-
-  <footer>
-    © 2026 Steve Davey
-  </footer>
 </body>
 </html>
