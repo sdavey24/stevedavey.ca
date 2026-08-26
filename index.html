@@ -174,8 +174,32 @@
       color: #c7d0dc;
     }
 
+    .linkedin {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      margin-top: 30px;
+      border-radius: 5px;
+      background: #0A66C2;
+      text-decoration: none;
+      transition: transform .18s ease, opacity .18s ease;
+    }
+
+    .linkedin:hover {
+      transform: translateY(-2px);
+      opacity: .9;
+    }
+
+    .linkedin svg {
+      width: 27px;
+      height: 27px;
+      fill: #ffffff;
+    }
+
     .location {
-      margin-top: 36px;
+      margin-top: 24px;
       color: #b8c2cf;
       font-size: 15px;
       letter-spacing: .04em;
@@ -250,6 +274,17 @@
       Building practical solutions, solving interesting problems,
       and occasionally making things more complicated than necessary.
     </p>
+
+    <a class="linkedin"
+       href="https://www.linkedin.com/in/steve-davey-5822772b"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Steve Davey on LinkedIn"
+       title="LinkedIn">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.32 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.1 20.45H3.54V9H7.1v11.45z"/>
+      </svg>
+    </a>
 
     <div class="location">Thunder Bay, Ontario, Canada</div>
   </main>
